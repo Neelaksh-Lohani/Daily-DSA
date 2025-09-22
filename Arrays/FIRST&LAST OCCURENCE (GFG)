@@ -1,0 +1,44 @@
+class Solution {
+  public:
+    vector<int> find(vector<int>& arr, int x) {
+        // code here
+        int s = 0;
+        int n = arr.size();
+        int e = n-1;
+        int first = -1;
+        int last = -1;
+        int mid = s + (e-s)/2;
+        // FIRST OCC
+        while(s<=e){
+            if(arr[mid]==x){
+                first = mid;
+                e = mid-1;
+            }
+            if(arr[mid]>x){
+                e = mid-1;
+            }
+            if(arr[mid]<x){
+                s = mid+1;
+            }
+            mid = s + (e-s)/2;
+        }
+        
+        // LAST OCC
+         s = 0;
+         e = n-1;
+        while(s<=e){
+            if(arr[mid]==x){
+                last = mid;
+                s = mid+1;
+            }
+            if(arr[mid]>x){
+                e = mid-1;
+            }
+            if(arr[mid]<x){
+                s = mid+1;
+            }
+            mid = s + (e-s)/2;
+        }
+        return {first,last};
+    }
+};
