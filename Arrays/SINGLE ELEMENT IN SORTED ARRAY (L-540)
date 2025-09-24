@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& arr) {
+        int s = 0;
+        int e = arr.size()-1;
+        long int mid = s + (e-s)/2;
+
+        while(s<=e){
+            if(mid%2==1){
+                mid--;
+            }
+            if(mid+1<=e && arr[mid]==arr[mid+1]){ // single element is on the right side 
+                s = mid+2;
+            }
+            else{
+                e = mid-1;
+            }
+            mid = s + (e-s)/2;
+        }
+        return arr[s];
+    }
+};
